@@ -1,0 +1,4 @@
+.env
+secrets/db_password.txt
+node_modules
+dist
