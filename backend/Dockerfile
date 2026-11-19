@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.7
 
 # ---------- Stage 1: sirf production dependencies ----------
-FROM node:22-alpine AS deps
+FROM node:26-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 # BuildKit cache mount: npm cache image mein save nahi hota, build fast hota hai
@@ -9,7 +9,7 @@ RUN --mount=type=cache,target=/root/.npm \
     npm ci --omit=dev
 
 # ---------- Stage 2: chhota runtime image ----------
-FROM node:22-alpine AS runtime
+FROM node:26-alpine AS runtime
 ENV NODE_ENV=production \
     PORT=3000
 WORKDIR /app
